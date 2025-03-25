@@ -1,0 +1,87 @@
+.footer-spaguas {
+    background: white;
+    padding: 40px 0;
+    color: #333;
+    /* border-top: 1px solid #ddd; */
+  }
+
+  .main-footer-container {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+  }
+
+  .main-footer-container .footer-section {
+    flex: 1;
+    margin: 10px;
+  }
+  .main-footer-container .footer-section H1 {
+    flex: 1;
+    margin: 10px;
+    font-size: 23PX;
+    }
+  .main-footer-container .footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+
+  .main-footer-container .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .main-footer-container .footer-section ul li {
+    margin-bottom: 10px;
+  }
+
+  .main-footer-container .footer-section ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .main-footer-container .footer-section ul li a:hover {
+    text-decoration: none;
+    color: #1e8610;
+  }
+
+  .main-footer-container .footer-govsp {
+    background: #000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+  }
+
+  .footer-govsp-logo img {
+    height: 50px;
+  }
+
+  .footer-govsp-text {
+    font-size: 14px;
+  }
+
+  .social-icons-govsp {
+    display: flex;
+    gap: 10px;
+  }
+
+  .social-icons-govsp a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .social-icons-govsp i {
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
