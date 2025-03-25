@@ -1,0 +1,37 @@
+
+.basecard .title{
+    font-size: xx-large;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.basecard .subtitle{
+    font-weight: 600;
+    font-size: larger;
+}
+
+.basecard{
+    position: relative;
+    overflow: hidden;
+}
+
+.basecardbtn_edit .last_update{
+    font-size: smaller;
+    color: gray;
+}
+
+.btn_edit{
+    background-color: var(--bs-red);
+    padding: 5px;
+    border: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border-radius: 3px;
+    color: white;
+}
+
+.btn_edit:hover{
+    text-decoration: none;
+    color: white;
+}

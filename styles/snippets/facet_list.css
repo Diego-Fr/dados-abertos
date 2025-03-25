@@ -1,0 +1,26 @@
+.list-unstyled.nav.nav-simple.nav-facet .nav-item{
+    border: none;
+}
+
+.list-unstyled.nav.nav-simple.nav-facet .nav-item.active a{
+    background-color: #2dbbd3;
+}
+
+.item-count.badge{
+    background-color: #4b67d3;
+    border-radius: 0.25rem !important;
+}
+
+.module.module-narrow.module-shallow .module-heading{
+    background-color: white !important;
+    /* color: white !important; */
+    border-top: none !important;
+}
+.module.module-narrow.module-shallow{
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    overflow: hidden;
+    background-color: white;
+}
+

@@ -1,0 +1,47 @@
+{% extends "page.html" %}
+
+
+{% block subtitle %}{{ h.humanize_entity_type('group', group_type, 'page title') or _('Groups') }}{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/base.css') }}">
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/group/index.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="content">
+  <div class="container">
+    <div class="breadcrumb-container flex gap5">
+        <div>
+            <a href="/" aria-label="Home"><i class="fa fa-home"></i></a>
+        </div>
+        <div>
+            <a href="#" aria-label="Group" class="active">Grupos</a>
+        </div>
+        
+    </div>
+  </div>
+  <div class="container">
+      <section class='basecard group-list-wrapper'>
+          
+        {% if page.items or request.args %}
+            {% if page.items %}
+                {% snippet "group/snippets/group_list.html", groups=page.items %}
+            {% endif %}
+            {% else %}
+            <p class="empty">
+                {{ h.humanize_entity_type('group', group_type, 'no any objects') or _('There are currently no groups for this site') }}.
+                {% if h.check_access('group_create') %}
+                {% link_for _('How about creating one?'), named_route=group_type+'.new' %}</a>.
+                {% endif %}
+            </p>
+        {% endif %}
+
+      </section>
+  </div>
+</div>
+{% endblock %}

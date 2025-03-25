@@ -1,0 +1,39 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _("Welcome") }}{% endblock %}
+
+{% block content %}
+  <section class="hero-container">
+      <div class="hero-content-container">
+          <div class="hero-title-container">
+              <div class="hero-title-title">
+                  BEM-VINDO AO DADOS ABERTOS SP ÁGUAS
+              </div>
+              <div class="hero-title-subtitle">
+                  Encontre, compartilhe e use dados hidrológicos em um só lugar
+              </div>
+          </div>
+
+          <div class="hero-search-wrapper">
+              <div class="search-title-container">
+                  <div class="search-title-title">PESQUISAR DADOS</div>
+              </div>
+              <div class="search-select-container">
+                  <input type="text" class="search-select-select" placeholder="PROCURAR DATASET"/>
+                  <button class="search-select-submit"><span class="material-symbols-outlined">
+                      search
+                      </span></button>
+                  <!-- <div class="search-select-select">PESQUISAR DADOS</div> -->
+              </div>
+          </div>
+
+          <img src="./SP-Águas-Branco.png">
+      </div>
+  </section>
+{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+  <link rel="stylesheet" href="{{ h.url_for_static('/index.css') }}">
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "package/base.html" %}
+
+{% set default_group_type = h.default_group_type('group') %}
+
+{% block subtitle %}{{ h.dataset_display_name(pkg) }} {{ g.template_title_delimiter }} {{ super() }}{% endblock %}
+
+{% block head_extras -%}
+  {{ super() }}
+  {% set description = h.markdown_extract(
+    h.get_translated(pkg, 'notes'), extract_length=200) %}
+  <meta property="og:title" content="{{ h.dataset_display_name(pkg) }} - {{ g.site_title }}">
+  <meta property="og:description" content="{{ description|forceescape|trim }}">
+{% endblock -%}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/package/read/read.css') }}"> 
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/base.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div class="container">
+      <div class="breadcrumb-container flex gap5">
+          <div>
+              <a href="/" aria-label="Home"><i class="fa fa-home"></i></a>
+          </div>
+          <div>
+            {{ h.nav_link(_(dataset_type.title() + 's'), named_route='%s.search' % dataset_type) }}
+          </div>
+          <div>
+            <a class="active" href="#" aria-label="Current">{{pkg.name}}</a>
+          </div>
+          
+      </div>
+    </div>
+    <div class="container">
+      
+      <section>
+        <div class="basecard mb-3 p2">
+          <div class="edit-button"><a class="btn_edit" href="{{ h.url_for('dataset.edit', id=pkg.name) }}">Editar Dataset</a></div>
+          <div class="title">{{pkg.name}}</div>
+          <div class="last_update mb-3">Última Atualização: {{pkg.metadata_modified}}</div>
+          <div class="desc mb-3">{{pkg.notes}}</div>
+          
+          <div class="subtitle mb-2">Acesso e uso da informação</div>
+          <div class="flex gap5 flex-valign-c"><img class="image" width="20px" src="{{ h.url_for_static('/images/icons/public_16dp_icon.png') }}"/>{{ ('Esse dado é <strong>privado</strong>' if pkg.private else 'Esse dado é <strong>público</strong>')|safe}}</div>
+          <div class="flex gap5 flex-valign-c"><img class="image" width="20px" src="{{ h.url_for_static('/images/icons/license_16dp_icon.png') }}"/>Licença: <a href="https://opendefinition.org/licenses/{{pkg.license_id}}">{{pkg.license_id}}</a></div>
+          
+          <div class="mt-4">
+            <hr>
+            {% snippet "package/snippets/resources_list_new.html", pkg=pkg, resources=pkg.resources, can_edit=false %}
+          </div>
+
+          <div class="mt-4">
+            <hr>
+            <h2 class="mb-3">Tags</h2>
+            {% for tag in pkg.tags %}
+              <span class="spantag primary">{{tag.name}}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+        
+    </div>
+  </div>
+{% endblock %}

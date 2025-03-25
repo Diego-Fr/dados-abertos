@@ -1,0 +1,140 @@
+.main-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.main-title-text{
+    /* color: white; */
+    padding: 20px 20px 5px 20px;
+    font-weight: 600;
+    font-size: xx-large;
+}
+.main-input-container{
+    padding: 5px 20px 20px 20px;
+    display: flex;
+    gap: 5px;
+}
+
+.main-input-container button{
+    width: 50px;
+    border: none;
+    background-color: blue;
+    border-radius: 5px;
+    color: white;
+
+}
+
+input.main-input{
+    width: 100%;
+    border: 1px solid #c7c7c7;
+    border-radius: 5px;
+    height: 40px;
+    padding: 15px;
+}
+
+.content{
+    background-color: #f3f3f3;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* gap: 5px; */
+    padding-top: 1rem;
+    
+}
+
+.search-list-wrapper{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.search-sidebar-container, .search-list-container{
+    /* flex: 1; */
+    /* background-color: white; */
+    width: 100%;
+    border-radius: 5px;
+    padding: 20px;
+    
+}
+
+.search-sidebar-container{
+    padding: 0px;
+    overflow: hidden;
+}
+
+.search-list-container{
+    background-color: transparent;
+    padding: 0px;
+}
+
+.search-list-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container.flex-h{
+    display: flex;
+}
+
+.container.gap5{
+    gap: 5px;
+}
+
+.group-info{
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.group-info .group-info-name{
+    background-color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: large;
+    padding: 5px;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.group-info .group-info-description{
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.group-info .group-info-description .text-desc{
+    background-color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+.group-info .group-info-description .text-label{
+    font-size: xx-small;
+    text-align: center;
+    color: var(--bs-gray);
+}
+
+.group-info .group-info-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.group-info .group-info-image img{
+    width: 80%;
+    height: 80%;
+}
+
+.group-info .group-info-datasets-count{
+    width: 100%;
+}
+
+.group-info .group-info-datasets-count .number{
+    font-weight: 600;
+    font-size: xx-large;
+}

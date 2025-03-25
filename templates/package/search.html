@@ -1,0 +1,55 @@
+{% extends "page.html" %}
+{% import 'macros/form.html' as form %}
+
+{% block subtitle %}{{ _(dataset_type.title()) }}{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/package/search/search.css') }}"> 
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/snippets/facet_list.css') }}">
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/snippets/package_list_new.css') }}">
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/base.css') }}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="content">
+  <div class="container">
+    <div class="breadcrumb-container flex gap5">
+        <div>
+            <a href="/" aria-label="Home"><i class="fa fa-home"></i></a>
+        </div>
+        <div>
+          {{ h.nav_link(_(dataset_type.title() + 's'), named_route='%s.search' % dataset_type,class_="active") }}
+        </div>
+        
+    </div>
+  </div>
+  <div class="container">
+      <section class='main-title'>
+          
+              <div class="main-title-text">Buscar Dados</div>
+          
+              <div class="main-input-container">
+                  <input type="text" class="main-input" placeholder="Buscar">
+                  <button type="submit">Lupa</button>
+              </div>
+          
+      </section>
+      
+  </div>
+  <div class="container">
+      <section class='search-list-wrapper'>
+          
+        <div class="search-sidebar-container">
+          {% for facet in facet_titles %}
+            {% snippet 'snippets/facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets, hide_empty=true %}
+          {% endfor %}
+        </div>
+        {% snippet 'snippets/package_list_new.html', packages=page.items %}
+
+      </section>
+  </div>
+</div>
+{% endblock %}

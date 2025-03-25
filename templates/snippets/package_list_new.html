@@ -1,0 +1,23 @@
+<div class="search-list-container">
+    {% for item in packages %}
+      
+        <div class="list-item-container">
+          <div class="title">
+            <a href="{{ h.url_for('%s.read' % item.type, id=item.name) }}" title="{{ item.title }}">
+              {{item.title|truncate(80)}}
+            </a>
+          </div>
+          <div class="subtitle">{{ item.type }}</div>
+          <div class='description'>{{item.notes}}</div>
+          <div class="footer-container">
+              <div class='tags'>
+                  {% for tag in item.tags %}
+                    <span>{{tag.name}}</span>
+                  {% endfor %}
+              </div>
+              <div class='updated_at'>Última atualização: 14/02/2025 10:00</div>
+          </div>
+      </div>
+
+    {% endfor %}
+  </div>

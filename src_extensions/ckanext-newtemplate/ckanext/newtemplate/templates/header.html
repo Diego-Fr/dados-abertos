@@ -1,0 +1,9 @@
+{% block header %}
+  <header class="custom-header">
+    <div class="container">
+      <h1><a href="{{ h.url_for('home.index') }}">Meu CKAN Personalizado</a></h1>
+    </div>
+  </header>
+  <link rel="stylesheet" href="{{ h.url_for_static('/css/custom.css') }}">
+  <link rel="stylesheet" href="{{ h.url_for_static('/css/index.css') }}">
+{% endblock %}
