@@ -112,6 +112,13 @@
     background-color: #f3f3f3 !important;
 }
 
+.custombadge{
+    border-radius: 3px;
+    font-size: x-small;
+    padding: 5px;
+    color: white;
+}
+
 @keyframes show {
     from {opacity: 0; transform: translateY(10%);}
     to {opacity: 1; transform: translateY(0%);}

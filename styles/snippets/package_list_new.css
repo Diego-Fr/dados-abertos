@@ -2,20 +2,31 @@
 .list-item-container{
     display: flex;
     flex-direction: column;
-    gap: 5px;
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     border-bottom: 1px solid rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateX(50%);
+    transition: 0.3s all;
+}
+
+.list-item-container.show{
+    transform: translateX(0%);
+    opacity: 1;
 }
 
 .list-item-container .title{
     font-weight: 600;
     font-size: larger;
+    display: flex;
+    gap: 5px;
+    text-transform: uppercase;
 }
 .list-item-container .subtitle{
-    /* font-weight: 600; */
+    font-weight: 600;
     font-size: small;
+    text-transform: capitalize;
     /* color: #c7c7c7; */
 }
 
@@ -26,13 +37,15 @@
 .list-item-container .tags{
     margin-top: 5px;
     width: 100%;
+    display: flex;
+    gap: 5px;
 }
 
 .list-item-container .tags span{
-    background-color: #c7c7c7;
+    border: 1px solid #c7c7c7;
     padding: 5px;
     border-radius: 3px;
-    color: white;
+    color: grey;;
     font-size: x-small;
 }
 

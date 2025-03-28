@@ -1,5 +1,11 @@
 {% set dataset_type = h.default_package_type() %}
 
+{% block styles %}
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/nav.css') }}">
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/base.css') }}">
+{% endblock %}
+
+
 {% block header_wrapper %}
 <div id="nav" class="nav-wrapper">
     <nav class="nav-container">
@@ -79,7 +85,3 @@
 </div>
 {% endblock %}
 
-{% block styles %}
-  <link rel="stylesheet" href="{{ h.url_for_static('/styles/nav.css') }}">
-  <link rel="stylesheet" href="{{ h.url_for_static('/styles/base.css') }}">
-{% endblock %}

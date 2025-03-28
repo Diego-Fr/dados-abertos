@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="{{ h.url_for_static('/styles/snippets/facet_list.css') }}">
   <link rel="stylesheet" href="{{ h.url_for_static('/styles/snippets/package_list_new.css') }}">
   <link rel="stylesheet" href="{{ h.url_for_static('/styles/base.css') }}">
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/snippets/pagination.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -18,7 +19,7 @@
   <div class="container">
     <div class="breadcrumb-container flex gap5">
         <div>
-            <a href="/" aria-label="Home"><i class="fa fa-home"></i></a>
+          <a href="/" aria-label="Home"><i class="fa fa-home"></i></a>
         </div>
         <div>
           {{ h.nav_link(_(dataset_type.title() + 's'), named_route='%s.search' % dataset_type,class_="active") }}
@@ -32,14 +33,18 @@
               <div class="main-title-text">Buscar Dados</div>
           
               <div class="main-input-container">
-                  <input type="text" class="main-input" placeholder="Buscar">
-                  <button type="submit">Lupa</button>
+                  <input type="text" class="main-input" placeholder="Buscar" id="main-input">
+                  <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                  </button>
               </div>
           
       </section>
       
   </div>
-  <div class="container">
+  <div class="container mb-5">
       <section class='search-list-wrapper'>
           
         <div class="search-sidebar-container">
@@ -47,9 +52,38 @@
             {% snippet 'snippets/facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets, hide_empty=true %}
           {% endfor %}
         </div>
-        {% snippet 'snippets/package_list_new.html', packages=page.items %}
+        <div class="search-list-container">
+          <div class="list flex flex-v gap5"></div>
+          <div class="pagination-wrapper">
+            <div class="pagination">
+              <div class="control" data-id="left"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+              </svg></div>
+              <div class="items"></div>
+              <div class='control' data-id="right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+              </svg></div>
+            </div>
+            <div class="right-wrapper">
+              <number></number> datasets encontrados
+            </div>
+          </div>
+        </div>
+        
+        <!-- {% snippet 'snippets/package_list_new.html', packages=page.items %} -->
 
       </section>
   </div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+  {{super}}
+    <script>
+      const isAdmin = {{ 'true' if  c.userobj.sysadmin else 'false' }};
+      const GROUP = undefined
+    </script>
+
+    <script src="{{ h.url_for_static('/js/package/search.js') }}"></script>
+{% endblock %}
+

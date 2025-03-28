@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="{{ h.url_for_static('/styles/group/read.css') }}">
   <link rel="stylesheet" href="{{ h.url_for_static('/styles/snippets/facet_list.css') }}">
   <link rel="stylesheet" href="{{ h.url_for_static('/styles/snippets/package_list_new.css') }}">
+  <link rel="stylesheet" href="{{ h.url_for_static('/styles/snippets/pagination.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -63,54 +64,40 @@
                 <div class="main-title-text">Buscar Dados</div>
             
                 <div class="main-input-container">
-                    <input type="text" class="main-input" placeholder="Buscar">
+                    <input type="text" class="main-input" id="main-input" placeholder="Buscar">
                     <button type="submit">Lupa</button>
                 </div>
             
             </section>
-            {% snippet 'snippets/package_list_new.html', packages=page.items %}
+            <div class="search-list-container">
+              <div class="list flex flex-v gap5"></div>
+              <div class="pagination-wrapper">
+                <div class="pagination">
+                  <div class="control" data-id="left"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                  </svg></div>
+                  <div class="items"></div>
+                  <div class='control' data-id="right"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                  </svg></div>
+                </div>
+                <div class="right-wrapper">
+                  <number></number> datasets encontrados
+                </div>
+              </div>
+            </div>
         </div>
 
     </div>
   </div>
 {% endblock %}
 
-{% block primary_content_inner %}
-  {% block groups_search_form %}
-    {% set facets = {
-      'fields': fields_grouped,
-      'search': search_facets,
-      'titles': facet_titles,
-      'translated_fields': translated_fields,
-      'remove_field': remove_field }
-    %}
-    {% set sorting = [
-      (_('Relevance'), 'score desc, metadata_modified desc'),
-      (_('Name Ascending'), 'title_string asc'),
-      (_('Name Descending'), 'title_string desc'),
-      (_('Last Modified'), 'metadata_modified desc')
-      ]
-    %}
-    {% snippet 'snippets/search_form.html', form_id='group-datasets-search-form', type=dataset_type, query=q, sorting=sorting, sorting_selected=sort_by_selected, count=page.item_count, facets=facets, placeholder=h.humanize_entity_type('package', dataset_type, 'search placeholder') or _('Search datasets...'), show_empty=request.args, fields=fields %}
-  {% endblock %}
-  {% block packages_list %}
-    {% if page.items %}
-      {% snippet 'snippets/package_list_new.html', packages=page.items %}
-    {% endif %}
-  {% endblock %}
-  {% block page_pagination %}
-    {{ page.pager(q=q) }}
-  {% endblock %}
-{% endblock %}
+{% block scripts %}
+  {{super}}
+    <script>
+      const isAdmin = {{ 'true' if  c.userobj.sysadmin else 'false' }};
+      const GROUP = "{{group_dict.name}}"
+    </script>
 
-{% block secondary_content %}
-  {{ super() }}
-  <div class="filters">
-    <div>
-      {% for facet in facet_titles %}
-        {% snippet 'snippets/facet_list.html', title=facet_titles[facet], name=facet, extras={'id':group_dict.id}, search_facets=search_facets %}
-      {% endfor %}
-    </div>
-    <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
-  </div>
+    <script src="{{ h.url_for_static('/js/package/search.js') }}"></script>
 {% endblock %}

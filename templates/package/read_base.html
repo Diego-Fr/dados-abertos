@@ -59,9 +59,46 @@
               <span class="spantag primary">{{tag.name}}</span>
             {% endfor %}
           </div>
+
+          <div class="mt-4">
+            <hr>
+            <h2 class="mb-3">Grupos Vinculados</h2>            
+            <div class="group-list-wrapper">
+              {% if pkg.groups | length == 0 %}
+              <div>Esse dataset não está vinculado a nenhum grupo</div>
+                <form method="POST" class="form-append-group" action="/dataset/groups/{{pkg.name}}">
+                  {{ h.csrf_input() }}
+                  <select id="field-add_group" name="group_added"><option>Selecione um grupo</option></select>
+                  <button type="submit">Vincular ao Grupo</button>
+                </form>
+              {% else %}
+              <form method="POST" class="form-append-group flex gap5" action="/dataset/groups/{{pkg.name}}">
+                {{ h.csrf_input() }}
+                {% if pkg.groups | length > 0 %}
+                  {% for group in pkg.groups %}
+                    <div>{{ group.display_name }}</div>
+                    <input name="group_remove.{{ group.id }}" value="Remover" type="submit" class="btn btn-danger btn-sm media-edit" title="{{ _('Remove dataset from this group') }}"/>
+                  {% endfor %}
+                {% endif %}
+              </form>
+              
+              {% endif %}
+            </div>
+            
+          </div>
         </div>
       </section>
         
     </div>
   </div>
+{% endblock %}
+
+{% block scripts %}
+  {{super}}
+    <script>
+      const isAdmin = {{ 'true' if  c.userobj.sysadmin else 'false' }};
+      const inGroup = {{ 'true' if pkg.groups | length > 0 else 'false' }};
+    </script>
+
+    <script src="{{ h.url_for_static('/js/package/read.js') }}"></script>
 {% endblock %}

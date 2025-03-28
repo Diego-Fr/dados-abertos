@@ -35,3 +35,11 @@
     text-decoration: none;
     color: white;
 }
+
+.form-append-group{
+    display: flex;
+    margin-top: 10px;
+    /* flex-direction: column; */
+    width: fit-content;
+    gap: 10px;
+}
