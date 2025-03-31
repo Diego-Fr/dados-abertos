@@ -43,6 +43,7 @@
 }
 
 .breadcrumb-container div:not(:last-child):after{
+    height: 100%;
     content: "/";
     /* position: absolute; */
     /* right: -6px; */

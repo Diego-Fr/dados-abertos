@@ -1,4 +1,5 @@
 #!/bin/bash
+CONFIG_FILE="/srv/app/ckan.ini"
 
 if [[ $CKAN__PLUGINS == *"datapusher"* ]]; then
    # Datapusher settings have been configured in the .env file
