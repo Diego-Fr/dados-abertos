@@ -22,7 +22,7 @@
 
 .btn_edit{
     background-color: var(--bs-red);
-    padding: 5px;
+    padding: 5px 15px;
     border: none;
     position: absolute;
     right: 5px;

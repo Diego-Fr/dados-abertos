@@ -3,6 +3,10 @@ FROM ckan/ckan-base:2.11
 # Install any extensions needed by your CKAN instance
 # See Dockerfile.dev for more details and examples
 
+USER root
+RUN pip install "ckanext-geoview"
+RUN apt-get update && apt-get install -y vim && rm -rf /var/lib/apt/lists/*
+
 # Copy custom initialization scripts
 COPY --chown=ckan-sys:ckan-sys docker-entrypoint.d/* /docker-entrypoint.d/
 
