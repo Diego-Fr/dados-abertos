@@ -154,7 +154,7 @@ async function getDatasets(){
         el.innerHTML = `
             
             <div class="title">
-                <a href="/dataset/${dataset.name}">${dataset.title}</a>${dataset.private ? '<span class="custombadge bg-danger">privado</span>' : ''}
+                <a href="/dados/dataset/${dataset.name}">${dataset.title}</a>${dataset.private ? '<span class="custombadge bg-danger">privado</span>' : ''}
             </div>
             <div class="subtitle">${dataset.type}</div>
             <div class='description mb-3'>${dataset.notes}</div>
