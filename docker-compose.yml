@@ -31,6 +31,12 @@ services:
       - dbnet
       - solrnet
       - redisnet
+    environment:
+      - CKAN__ROOT_PATH=/dados
+      - CKAN_SITE_URL=https://s3.daee.sp.gov.br
+      - CKANEXT__SPATIAL__COMMON_MAP__TYPE=custom
+      - CKANEXT__SPATIAL__COMMON_MAP__CUSTOM__URL=https://tile.openstreetmap.org/{z}/{x}/{y}.png
+      - CKANEXT__SPATIAL__COMMON_MAP__ATTRIBUTION=Map tiles & Data by OpenStreetMap, under CC BY SA
     env_file:
       - .env
     depends_on:
