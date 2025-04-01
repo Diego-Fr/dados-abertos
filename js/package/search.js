@@ -206,9 +206,9 @@ function mountUrl(){
     })
     if(!GROUP){
         
-        return `/api/3/action/package_search?include_private=${isAdmin}&rows=${LIMIT}&q=${urlSearchParams.get('q') || ''}&fq=${fq}&start=${PAGE_NUMBER*LIMIT - LIMIT}`
+        return `/dados/api/3/action/package_search?include_private=${isAdmin}&rows=${LIMIT}&q=${urlSearchParams.get('q') || ''}&fq=${fq}&start=${PAGE_NUMBER*LIMIT - LIMIT}`
     } else {
-        return `/api/3/action/package_search?include_private=${isAdmin}&rows=${LIMIT}&q=${urlSearchParams.get('q') || ''}&fq=${fq} +groups:${GROUP.toLowerCase()}&start=${PAGE_NUMBER*LIMIT - LIMIT}`
+        return `/dados/api/3/action/package_search?include_private=${isAdmin}&rows=${LIMIT}&q=${urlSearchParams.get('q') || ''}&fq=${fq} +groups:${GROUP.toLowerCase()}&start=${PAGE_NUMBER*LIMIT - LIMIT}`
         // return `/api/3/action/group_package_show?id=${GROUP.toLowerCase()}&include_private=${isAdmin}&rows=${LIMIT}&q=${urlSearchParams.get('q') || ''}&fq=${fq}&start=${PAGE_NUMBER*LIMIT - LIMIT}`
     }
     

@@ -29,7 +29,7 @@ function buildForm(){
 async function getGroups(){
     let response
     try{
-        response = await fetch('https://localhost:8443/api/3/action/group_list')
+        response = await fetch('/dados/api/3/action/group_list')
         response = await response.json()
         GROUPS = response.result 
     } catch(e){
