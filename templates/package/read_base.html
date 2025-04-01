@@ -77,14 +77,14 @@
               {% if pkg.groups | length == 0 %}
                 <div>Esse dataset não está vinculado a nenhum grupo</div>
                 {% if c.userobj.sysadmin %} 
-                  <form method="POST" class="form-append-group flex-valign-c" action="/dado/dataset/groups/{{pkg.name}}">
+                  <form method="POST" class="form-append-group flex-valign-c" action="/dados/dataset/groups/{{pkg.name}}">
                     {{ h.csrf_input() }}
                     <select id="field-add_group" name="group_added"><option>Selecione um grupo</option></select>
                     <button type="submit">Vincular ao Grupo</button>
                   </form>
                 {% endif %}
               {% else %}
-              <form method="POST" class="form-append-group flex gap5 flex-valign-c" action="/dado/dataset/groups/{{pkg.name}}">
+              <form method="POST" class="form-append-group flex gap5 flex-valign-c" action="/dados/dataset/groups/{{pkg.name}}">
                 {{ h.csrf_input() }}
                 {% if pkg.groups | length > 0 %}
                   {% for group in pkg.groups %}
